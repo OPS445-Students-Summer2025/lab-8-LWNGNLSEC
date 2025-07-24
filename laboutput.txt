@@ -1,0 +1,37 @@
+
+PLAY [clee259] *****************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [clee259]
+
+TASK [update Apache (httpd) to latest version] *********************************
+ok: [clee259]
+
+TASK [install EPEL repository] *************************************************
+ok: [clee259]
+
+TASK [remove 'tree' package] ***************************************************
+changed: [clee259]
+
+TASK [set hostname to Seneca ID] ***********************************************
+ok: [clee259]
+
+TASK [create new user with sudo access] ****************************************
+ok: [clee259]
+
+TASK [add SSH public key for passwordless login] *******************************
+ok: [clee259]
+
+TASK [create lab directories] **************************************************
+ok: [clee259] => (item=1)
+ok: [clee259] => (item=2)
+ok: [clee259] => (item=3)
+ok: [clee259] => (item=4)
+ok: [clee259] => (item=5)
+ok: [clee259] => (item=6)
+ok: [clee259] => (item=7)
+ok: [clee259] => (item=8)
+
+PLAY RECAP *********************************************************************
+clee259                    : ok=8    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
