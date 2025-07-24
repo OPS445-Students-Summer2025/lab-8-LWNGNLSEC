@@ -1,0 +1,49 @@
+---
+- hosts: clee259
+  user: clee259
+  become: yes
+  vars:
+    seneca_id: clee259
+
+  tasks:
+    - name: update Apache (httpd) to latest version
+      yum:
+        name: httpd
+        state: latest
+
+    - name: install EPEL repository
+      yum:
+        name: epel-release
+        state: present
+
+    - name: remove 'tree' package
+      yum:
+        name: tree
+        state: absent
+
+    - name: set hostname to Seneca ID
+      hostname:
+        name: "clee259"
+
+    - name: create new user with sudo access
+      user:
+        name: "clee259"
+        shell: /bin/bash
+        groups: wheel
+        state: present
+        create_home: yes
+
+    - name: add SSH public key for passwordless login
+      authorized_key:
+        user: "clee259"
+        key: "{{ lookup('file', '~/.ssh/id_ed25519.pub') }}"
+        state: present
+
+    - name: create lab directories
+      file:
+        path: "/home/{{ seneca_id }}/ops445/lab{{ item }}"
+        state: directory
+        owner: "clee259"
+        group: "clee259"
+        mode: '0755'
+      loop: "{{ range(1,9) | list }}"
